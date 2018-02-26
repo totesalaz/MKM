@@ -2,7 +2,7 @@
 Here we present a simple, flexible and cost-effective system that combines 3D printed components and an Arduino board to automatize a vast majority of kinematic mounts available on the market.
 
 <p align="center">
-  <img src="images/figure1.png" width="320"/>
+  <img src="images/figure1.gif" width="320"/>
   <figcaption><bolf>Figure 1. Fully assembled Motorized Kinematic Mount.</bold></figcaption>
 </p>
 
