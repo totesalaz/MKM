@@ -18,16 +18,17 @@ The following table sumarizes the list of materials required to motorize a singl
 A single unit of the system, capable of controlling the tip and tilt of a kinematic mount, is composed of two stepper motors (28BYJ-48) attached to a 3D printed plaque that aligns the knobs of the kinematic mount with the axis of the motors. The axis are coupled to the knobs using a 3D printed knob adapter. The motor drivers are connected to an Arduino MEGA sensor shield (attached to and Arduino MEGA) using Dupont wire jumper cables. 
 
 <p align="center">
-  <img src="images/figure2.png" width="640"/>
+  <img src="images/figure2.png" width="320"/>
 </p>
 
 Regarding the motor used, the 28BYJ-48 is a very cheap stepper motor that requires five wires for its connection to the motor driver circuit (typically an ULN2003 is used). The motor can operate in the voltage range 5V to 12V and gives 4096 steps per one turn. This number comes from the fact that the internal stepper motor that requires 64 steps to give a complete turn is connected to a set of gears that provide a reduction ratio of 1/64. As a result the 28BYJ-48 requires 64x64=4096 steps to complete a full turn. 
 
 <p align="center">
   <img src="images/figure3.png" width="640"/>
+  <figcaption>Figure 3.</figcaption>
 </p>
 
-Figure ???A provides a connection diagram for a single unit that requires two channels (tip and tilt). Each channel is composed of a stepper motor 28BYJ-48, driver electronics and a Dupont cable patch with six wires. Given the number of output pins available on the Arduino sensor shield, the board can be used to control up to five kinematic mounts simultaneously as shown in Figure ???B.
+Figure 3(a) provides a connection diagram for a single unit that requires two channels (tip and tilt). Each channel is composed of a stepper motor 28BYJ-48, driver electronics and a Dupont cable patch with six wires. Given the number of output pins available on the Arduino sensor shield, the board can be used to control up to five kinematic mounts simultaneously as shown in Figure 3(b).
 
 Since the 3D printed components that couple the stepper motors to the kinematic mount were designed using FreeCAD 0.16, the distance between motor axis on the plate, and the inner diameter and height on the knob adapters can be easily modified using a spreadsheet. To attach the motors to the PLA plate, four M4 screws are required, whereas two M3 grub screws are used to secure the knobs to the knob adapters.
 
