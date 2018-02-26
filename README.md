@@ -1,7 +1,9 @@
-# MKM
-Motorized Kinematic Mount (MKM)
-
+# Motorized Kinematic Mount (MKM)
 Here we present a simple, flexible and cost-effective system that combines 3D printed components and an Arduino board to automatize a vast majority of kinematic mounts available on the market.
+
+<p align="center">
+  <img src="images/figure1.png" width="640"/>
+</p>
 
 The simplicity of the system relies on the components used to implement it. As show in the next figure, the system is composed of a 3D printed plate that supports two stepper motors 28BYJ-48 whose shafts are aligned with the knobs used to tip and tilt the plane of the kinematic mount that supports the optics. The cylindrical adapter used to couple the shaft to the knob is also 3D printed. To control the motors, an Arduino MEGA is used. In order to simplify the connections with the motor drivers, a sensor shield that provides the capability of controlling up to ten motors simultaneously by sending simple instructions defined by a command table through the serial port. 
 
