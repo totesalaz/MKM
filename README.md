@@ -3,6 +3,7 @@ Here we present a simple, flexible and cost-effective system that combines 3D pr
 
 <p align="center">
   <img src="images/figure1.png" width="320"/>
+  <figcaption><bolf>Figure 1. Fully assembled Motorized Kinematic Mount.</bold></figcaption>
 </p>
 
 The simplicity of the system relies on the components used to implement it. As show in the next figure, the system is composed of a 3D printed plate that supports two stepper motors 28BYJ-48 whose shafts are aligned with the knobs used to tip and tilt the plane of the kinematic mount that supports the optics. The cylindrical adapter used to couple the shaft to the knob is also 3D printed. To control the motors, an Arduino MEGA connected to a sensor shield is used. 
@@ -19,13 +20,14 @@ A single unit of the system, capable of controlling the tip and tilt of a kinema
 
 <p align="center">
   <img src="images/figure2.png" width="320"/>
+  <figcaption><bolf>Figure 2. Example of implementation for a Radiant Dyes kinematic mount.</bold></figcaption>
 </p>
 
 Regarding the motor used, the 28BYJ-48 is a very cheap stepper motor that requires five wires for its connection to the motor driver circuit (typically an ULN2003 is used). The motor can operate in the voltage range 5V to 12V and gives 4096 steps per one turn. This number comes from the fact that the internal stepper motor that requires 64 steps to give a complete turn is connected to a set of gears that provide a reduction ratio of 1/64. As a result the 28BYJ-48 requires 64x64=4096 steps to complete a full turn. 
 
 <p align="center">
   <img src="images/figure3.png" width="640"/>
-  <figcaption>Figure 3.</figcaption>
+  <figcaption><bold>Figure 3. Motorized Kinematic Mount connection diagram</bold></figcaption>
 </p>
 
 Figure 3(a) provides a connection diagram for a single unit that requires two channels (tip and tilt). Each channel is composed of a stepper motor 28BYJ-48, driver electronics and a Dupont cable patch with six wires. Given the number of output pins available on the Arduino sensor shield, the board can be used to control up to five kinematic mounts simultaneously as shown in Figure 3(b).
