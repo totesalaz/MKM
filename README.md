@@ -13,7 +13,14 @@ Regarding flexibility, the hardware and software of the system can be easily mod
 Last but not least, the cost of the system is directly related to its simplicity. As a reference, the total cost of fabricating a system composed of four stepper motors that can be used to control two kinematic mounts is around 50 EUR. As a result the system presented in this letter compares favorably with respect to commercial alternatives that can be roughly between 5 to 10 times more expensive. However, a word of caution should be added here. Since the system keeps track of the number of steps given by the stepper motor of each channel to estimate its current position, some inaccuracies may appear due to the hysteresis present on the stepper motors. Therefore, the usefulness of the system presented in this letter depends on the application. Fortunately, from our experience in the laboratory, we have found that the system is suitable for a wealth of applications ranging from teaching to research.
 
 ## Materials
-The following table sumarizes the list of materials required to motorize a single Kinematic Mount.
+
+| Component | Quantity |
+|--------------|--------------|
+| Parametric plaque (3D printed) | 1 |
+Knob adapter (3D printed) | 2 |
+| M3 screw | 4 |
+| Motor 28BYJ-48 | 2 |
+| Dupont cable (patch of 6 cables) | 2 |
 
 ## Hardware Implementation
 A single unit of the system, capable of controlling the tip and tilt of a kinematic mount, is composed of two stepper motors (28BYJ-48) attached to a 3D printed plaque that aligns the knobs of the kinematic mount with the axis of the motors. The axis are coupled to the knobs using a 3D printed knob adapter. The motor drivers are connected to an Arduino MEGA sensor shield (attached to and Arduino MEGA) using Dupont wire jumper cables. 
