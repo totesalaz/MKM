@@ -50,7 +50,16 @@ The following table provides information on the parameters used for customizing 
 ## Software Implementation
 In order to provide flexibility and simplicity from the software perspective, each motor can be controlled independently by sending a simple instruction defined by a command table through the serial port. A command table is a dictionary of instructions that can be divided into two categories: commands and queries. The first category corresponds to a direct order such as "move stepper motor connected to port 3, half-turn". The second type of command is used to ask information to the device about its status; for example the state of a digital variable, the value of a given counter or the identification string that contains relevant information about the device and its manufacturer. 
 
-TABLE
+| Command | Description |
+|----------------|----------------|
+| STPM:N:ABS:X | move STePper Motor N to ABSolute position X (in steps) |
+| STPM:N:REL:X | move STePper Motor N, RELative to current position |
+| STPM:N:RST   | ReSeT STePper Motor N counter to 0 |
+| STPM:N:VEL:X | set STePper Motor N, VELocity to X, where X (1 fast / 10 slow) |
+| STPM:N:ST?   | retrieve motor N current STatus (position, velocity, state) |
+|              | velocity -> (1 fast / 10 slow) |
+|              | state -> (0 stop / 1 moving) |
+| STOP         | emergency stop. Press reset button to restart |
 
 For reference, table \ref{tbl:command_table} shows the complete list of commands used to control and retrieve information of the status of each motor connected to the Arduino board. Since the status of each motor is determined by a variable that keeps track of the number of steps given by the motor, it is assumed a one-to-one correspondence between the number of steps defined by software and the number of steps given by the axis of the motor. A step on the clock-wise direction adds one unit to the counter; a step on the counter-clock-wise direction subtracts a unit. To keep the current status of each motor over time, each counter is stored in the non volatile section of the Arduino (EEPROM memory) so that all the information is available even though the Arduino board is powered off.
 
