@@ -12,7 +12,7 @@ Regarding flexibility, the hardware and software of the system can be easily mod
 
 Last but not least, the cost of the system is directly related to its simplicity. As a reference, the total cost of fabricating a system composed of four stepper motors that can be used to control two kinematic mounts is around 50 EUR. As a result the system presented in this letter compares favorably with respect to commercial alternatives that can be roughly between 5 to 10 times more expensive. However, a word of caution should be added here. Since the system keeps track of the number of steps given by the stepper motor of each channel to estimate its current position, some inaccuracies may appear due to the hysteresis present on the stepper motors. Therefore, the usefulness of the system presented in this letter depends on the application. Fortunately, from our experience in the laboratory, we have found that the system is suitable for a wealth of applications ranging from teaching to research.
 
-## Materials
+## List of materials
 
 | Component | Quantity |
 |--------------|--------------|
@@ -23,21 +23,21 @@ Knob adapter (3D printed) | 2 |
 | Dupont cable (patch of 6 cables) | 2 |
 
 ## Hardware Implementation
-A single unit of the system, capable of controlling the tip and tilt of a kinematic mount, is composed of two stepper motors (28BYJ-48) attached to a 3D printed plaque that aligns the knobs of the kinematic mount with the axis of the motors. The axis are coupled to the knobs using a 3D printed knob adapter. The motor drivers are connected to an Arduino MEGA sensor shield (attached to and Arduino MEGA) using Dupont wire jumper cables. 
+A single unit of the system, capable of controlling the tip and tilt of a kinematic mount, is composed of two stepper motors (28BYJ-48) attached to the 3D printed plaque that aligns the knobs of the kinematic mount with the axis of the motors. The axis are coupled to the knobs using a 3D printed knob adapter. The motor drivers are connected to an Arduino MEGA sensor shield (attached to and Arduino MEGA) using Dupont wire jumper cables. 
 
 <p align="center">
   <img src="images/figure2.png" width="320"/>
   <figcaption><bolf>Figure 2. Example of implementation for a Radiant Dyes kinematic mount.</bold></figcaption>
 </p>
 
-Regarding the motor used, the 28BYJ-48 is a very cheap stepper motor that requires five wires for its connection to the motor driver circuit (typically an ULN2003 is used). The motor can operate in the voltage range 5V to 12V and gives 4096 steps per one turn. This number comes from the fact that the internal stepper motor that requires 64 steps to give a complete turn is connected to a set of gears that provide a reduction ratio of 1/64. As a result the 28BYJ-48 requires 64x64=4096 steps to complete a full turn. 
+Regarding the stepper motor used, the 28BYJ-48 is a very cheap motor that requires five wires for its connection to the motor driver circuit (reference ULN2003). The motor can operate in the voltage range 5V to 12V and in theory it gives 4096 steps per one turn. This number comes from the fact that the internal stepper motor that requires 64 steps to give a complete turn is connected to a set of gears that provide a reduction ratio of 1/64. As a result the 28BYJ-48 requires 64x64=4096 steps to complete a full turn. 
 
 <p align="center">
   <img src="images/figure3.png" width="640"/>
   <figcaption><bold>Figure 3. Motorized Kinematic Mount connection diagram</bold></figcaption>
 </p>
 
-Figure 3(a) provides a connection diagram for a single unit that requires two channels (tip and tilt). Each channel is composed of a stepper motor 28BYJ-48, driver electronics and a Dupont cable patch with six wires. Given the number of output pins available on the Arduino sensor shield, the board can be used to control up to five kinematic mounts simultaneously as shown in Figure 3(b).
+Figure 3(a) provides a connection diagram for a single unit that requires two channels (tip and tilt). Each channel is composed of a stepper motor 28BYJ-48, driver electronics and a Dupont cable patch with six wires. Given the number of output pins available on the Arduino sensor shield, the board can be used to control up to five kinematic mounts simultaneously as shown in Figure 3(b). In other terms, the shield can connect up to ten motors simultaneously (more than four motors may require an external power supply).
 
 Since the 3D printed components that couple the stepper motors to the kinematic mount were designed using FreeCAD 0.16, the distance between motor axis on the plate, and the inner diameter and height on the knob adapters can be easily modified using a spreadsheet. To attach the motors to the PLA plate, four M4 screws are required, whereas two M3 grub screws are used to secure the knobs to the knob adapters.
 
@@ -47,8 +47,15 @@ Since the 3D printed components that couple the stepper motors to the kinematic 
 
 The following table provides information on the parameters used for customizing the plate and the knob adapter to fit into four different types of kinematic mounts. 
 
+| Parameter | Value |
+|----------------|----------------|
+| A | 10.0 |
+| B | 10.0 |
+
 ## Software Implementation
-In order to provide flexibility and simplicity from the software perspective, each motor can be controlled independently by sending a simple instruction defined by a command table through the serial port. A command table is a dictionary of instructions that can be divided into two categories: commands and queries. The first category corresponds to a direct order such as "move stepper motor connected to port 3, half-turn". The second type of command is used to ask information to the device about its status; for example the state of a digital variable, the value of a given counter or the identification string that contains relevant information about the device and its manufacturer. 
+In order to provide flexibility and simplicity from the software perspective, each motor can be controlled independently by sending a simple instruction defined by a command table through the serial port. This approach enables the use of simple RS232 terminals such as Termite to control the system, or more elaborate code written in Python or Matlab (to name a few).
+
+A command table is a dictionary of instructions that can be divided into two categories: commands and queries. The first category corresponds to a direct order such as "move stepper motor connected to port 3, half-turn". The second type of command is used to ask information to the device about its status; for example the state of a digital variable, the value of a given counter or the identification string that contains relevant information about the device and its manufacturer. 
 
 | Command | Description |
 |----------------|----------------|
