@@ -48,16 +48,18 @@ Since the 3D printed components that couple the stepper motors to the kinematic 
 
 The following table provides information on the parameters used for customizing the plate and the knob adapter to fit into four different types of kinematic mounts. 
 
-Parameter | Thorlabs | Radiant Dyes | Liop-tec |
---- | --- | --- | --- | --- 
-Axis distance | 10.0 | 10.0 | 10.0 | 10.0 
-Diameter | 10.0 | 10.0 | 10.0 | 10.0 
-Height | 10.0 | 10.0 | 10.0 | 10.0 
+Parameter | Variable | Thorlabs | Radiant Dyes | Liop-tec |
+--- | --- | --- | --- | ---
+Axis distance (mm) | L | 10.0 | 10.0 | 10.0 
+Diameter (mm) | D | 10.0 | 10.0 | 10.0 
+Height (mm) | H | 10.0 | 10.0 | 10.0 
 
 ## Software Implementation
-In order to provide flexibility and simplicity from the software perspective, each motor can be controlled independently by sending a simple instruction defined by a command table through the serial port. This approach enables the use of simple RS232 terminals such as Termite to control the system, or more elaborate code written in Python or Matlab (to name a few).
+In order to provide flexibility and simplicity from the software perspective, each motor can be controlled independently by sending a simple instruction defined by a command table through the serial port. This approach enables the use of simple RS232 terminals such as [Termite](https://www.compuphase.com/software_termite.htm) and avoids the usage of additional drivers (complex and memory hungry) besides the drivers required by the Arduino board.
 
 A command table is a dictionary of instructions that can be divided into two categories: commands and queries. The first category corresponds to a direct order such as "move stepper motor connected to port 3, half-turn". The second type of command is used to ask information to the device about its status; for example the state of a digital variable, the value of a given counter or the identification string that contains relevant information about the device and its manufacturer. 
+
+The following table shows the complete list of commands used to control and retrieve information of the status of each motor connected to the Arduino board. Since the status of each motor is determined by a variable that keeps track of the number of steps given by the motor, it is assumed a one-to-one correspondence between the number of steps defined by software and the number of steps given by the axis of the internal stepper motor. A step given on the clock-wise direction adds one unit to the counter; a step given on the counter-clock-wise direction subtracts a unit. To keep the current status of each motor over time, each counter is stored in the non volatile section of the Arduino (EEPROM memory) so that all the information is available even though the Arduino board is powered off.
 
 | Command | Description |
 |----------------|----------------|
@@ -70,6 +72,5 @@ A command table is a dictionary of instructions that can be divided into two cat
 |              | state -> (0 stop / 1 moving) |
 | STOP         | emergency stop. Press reset button to restart |
 
-For reference, table \ref{tbl:command_table} shows the complete list of commands used to control and retrieve information of the status of each motor connected to the Arduino board. Since the status of each motor is determined by a variable that keeps track of the number of steps given by the motor, it is assumed a one-to-one correspondence between the number of steps defined by software and the number of steps given by the axis of the motor. A step on the clock-wise direction adds one unit to the counter; a step on the counter-clock-wise direction subtracts a unit. To keep the current status of each motor over time, each counter is stored in the non volatile section of the Arduino (EEPROM memory) so that all the information is available even though the Arduino board is powered off.
+Since the control method is based on a command table, there are many alternatives to implement the software interface that controls the system. Depending on the application, the user may require to perform simple actions driven by simple commands, or a more elaborate sequence of tasks dependent on external signals or defined by an algorithm with temporal dependence. The former can be implemented by sending commands through the serial port using a serial communication terminal compatible with the RS232 standard such as Termite and the latter can be implemented using MATLAB or Python.
 
-Since the control method is based on a command table, there are many alternatives to implement the software interface that controls the system. Depending on the application, the user may require to perform simple actions driven by simple commands, or a more elaborate sequence of tasks dependent on external signals or defined by an algorithm with temporal dependence. The former can be implemented by sending commands through the serial port using a serial communication terminal compatible with the RS232 standard such as Termite [reference] and the latter can be implemented using MATLAB or Python.
