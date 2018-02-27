@@ -13,12 +13,12 @@ Regarding flexibility, the hardware and software of the system can be easily mod
 Last but not least, the cost of the system is directly related to its simplicity. As a reference, the total cost of fabricating a system composed of four stepper motors that can be used to control two kinematic mounts is around 50 EUR. As a result the system developed compares favourably with respect to commercial alternatives that can be roughly between 5 to 10 times more expensive. However, a word of caution should be added here. Since the system keeps track of the number of steps given by the stepper motor of each channel to estimate its current position, some inaccuracies may appear due to the hysteresis present on the stepper motors. Therefore, the usefulness of the system presented here depends on the application. Fortunately, from our experience in the laboratory, we have found that the system is suitable for a wealth of applications ranging from teaching to research laboratories.
 
 ## List of materials
-To motorize a kinematic mount, the following materials are required. It is assumed that the Arduino MEGA and the sensor shield have been already acquired.
+To motorize a kinematic mount, the following materials are required. It is assumed that the Arduino MEGA and the sensor shield have been already acquired and the file **Motorized_Kinematic_Mount.ino** has been succesfully uploaded.
 
 | Component | Quantity |
 |--------------|--------------|
-| Parametric plaque (3D printed) | 1 |
-| Knob adapter (3D printed) | 2 |
+| Parametric plaque (parametric_plaque.FCStd) | 1 |
+| Knob adapter (knob_adapter.FCSTD) | 2 |
 | M3 screw | 4 |
 | Stepper Motor (28BYJ-48) | 2 |
 | Dupont cable (patch of 6 cables) | 2 |
@@ -48,11 +48,11 @@ Since the 3D printed components that couple the stepper motors to the kinematic 
 
 The following table provides information on the parameters used for customizing the plate and the knob adapter to fit into four different types of kinematic mounts. 
 
-Parameter | Variable | Thorlabs | Radiant Dyes | Liop-tec |
+Parameter | Variable | Thorlabs KM100 | Radiant Dyes | Liop-tec |
 --- | --- | --- | --- | ---
-Axis distance (mm) | L | 10.0 | 10.0 | 10.0 
-Diameter (mm) | D | 10.0 | 10.0 | 10.0 
-Height (mm) | H | 10.0 | 10.0 | 10.0 
+Axis distance (mm) | L | 53.3 | 43.8 | 49 
+Diameter (mm) | D | 14.8 | 16.6 | TBD 
+Height (mm) | H | 8.0 | 6.0 | TBD
 
 ## Software Implementation
 In order to provide flexibility and simplicity from the software perspective, each motor can be controlled independently by sending a simple instruction defined by a command table through the serial port. This approach enables the use of simple RS232 terminals such as [Termite](https://www.compuphase.com/software_termite.htm) and avoids the usage of additional drivers (complex and memory hungry) besides the drivers required by the Arduino board.
